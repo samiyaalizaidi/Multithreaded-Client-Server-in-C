@@ -32,23 +32,27 @@ Before you start, ensure the following dependencies are installed on your system
 ## Installation and Usage
 
 1. **Clone the Repository**
-  To get started, clone the repository and navigate to the project directory:
+
+   To get started, clone the repository and navigate to the project directory:
     ```bash
     git clone https://github.com/samiyaalizaidi/Multithreaded-Client-Server-in-C
     cd Multithreaded-Client-Server-in-C
     ```
 
-2. **Build the Source Code**
+3. **Build the Source Code**
+
    Compile the source files using the ``Makefile``:
     ```bash
     make build
     ```
-3. **Run the Server**
+4. **Run the Server**
+
    Start the server to listen for incoming file transfer requests:
    ```bash
    ./server
    ```
-4. **Run the Client**
+6. **Run the Client**
+
    In a separate terminal, run the client to request a file from the server:
    ```bash
    ./client <file-name> <thread-count>
@@ -56,14 +60,16 @@ Before you start, ensure the following dependencies are installed on your system
    - ``<file-name>``: The name of the file you want to transfer.
    - ``<thread-count>``: The number of threads to use for concurrent file transfer.
      
-5. **Run Automated Tests**
+8. **Run Automated Tests**
+
    To execute all automated tests, use the following command:
    ```bash
    make run
    ```
 
-6. **Clean the Build Files**
-   Remove compiled binaries and other temporary files:
+10. **Clean the Build Files**
+
+Remove compiled binaries and other temporary files:
     ```bash
     make clean
     ```
