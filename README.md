@@ -1,38 +1,85 @@
-# Concurrent File Transfer Application
+# Concurrent File Transfer Application :bookmark_tabs:
 
-For this assignment, in the socket programming part, I used the ``<arpa/inet.h>`` library. Because I did not have any knowledge of network programming, I had to refer to various resources on the internet. Here are a few of them:
+This project implements a multi-threaded client-server application for file transfer using socket programming in C. The server splits requested files into segments and sends them concurrently, while the client reassembles the file and verifies its integrity using SHA256 checksums.
 
-- A really good article by [GeeksforGeeks](https://www.geeksforgeeks.org/socket-programming-cc/). Explained the details of basic functions from the ``<arpa/inet.h>`` library.
+## Dependencies
+Before you start, ensure the following dependencies are installed on your system:
 
-- A [YouTube](https://www.youtube.com/watch?v=Pg_4Jz8ZIH4) video where this person explained how to using threads for file transfer - however, he did not use multiple threads to transfer a file from a sever to the client like in our case, instead, he just explained how to create a new thread whenever a new client wants to join. Was very helpful in getting me started with the multi-threading part.
+- **GCC Compiler**: To compile the source code.
+- **Make**: For building the project using the Makefile.
+- **OpenSSL Library**: Required for SHA256 checksum computations.
+  - Install OpenSSL on Ubuntu/Debian-based systems:
+    
+    ```bash
+    sudo apt-get update
+    sudo apt-get install libssl-dev   
+    ```
+  - For other systems, consult the OpenSSL installation guide for your package manager or platform.
 
-- I did not know anything about how to actually implement SHA256 or MD5 checksums, so had to google that too. From [StackOverflow](https://stackoverflow.com/questions/22880627/sha256-implementation-in-c) I found out about ``<openssl/sha.h>``, however, this library is deprecated and was giving warnings. I referred to MD5 too but faced the same problem there. So, after some searching, I found some useful information on a [GitHub issues pages](https://github.com/gluster/glusterfs/issues/2916) and [StackOverflow Forum](https://stackoverflow.com/questions/34289094/alternative-for-calculating-sha256-to-using-deprecated-openssl-code). Using these two resources, I was able to use the EVP API in ``<openssl/evp.h>`` to compute the SHA256 checksum that is used in both the client and server code.
-
-## How to Run?
-The directory contains the following files only:
+## Repository Structure
 ```
+.
 ├── Makefile
 ├── README.md
+├── LICENSE
 ├── client.c
 ├── server.c
 └── tests.sh
 ```
-``tests.sh`` contains the script that can be used to run the automated tests. All compilation and test running can be performed using the ``Makefile`` as follows:
+- ``client.c``: The client program for requesting and reassembling files.
+- ``server.c``: The server program for handling file requests.
+- ``tests.sh``: A script for running automated tests.
+## Installation and Usage
 
-1. To build the assignment source code.
-```bash
-make build
-```
+1. **Clone the Repository**
+  To get started, clone the repository and navigate to the project directory:
+    ```bash
+    git clone https://github.com/samiyaalizaidi/Multithreaded-Client-Server-in-C
+    cd Multithreaded-Client-Server-in-C
+    ```
 
-2. To run the automated tests.
-```bash
-make run
-```
+2. **Build the Source Code**
+   Compile the source files using the ``Makefile``:
+    ```bash
+    make build
+    ```
+3. **Run the Server**
+   Start the server to listen for incoming file transfer requests:
+   ```bash
+   ./server
+   ```
+4. **Run the Client**
+   In a separate terminal, run the client to request a file from the server:
+   ```bash
+   ./client <file-name> <thread-count>
+   ```
+   - ``<file-name>``: The name of the file you want to transfer.
+   - ``<thread-count>``: The number of threads to use for concurrent file transfer.
+     
+5. **Run Automated Tests**
+   To execute all automated tests, use the following command:
+   ```bash
+   make run
+   ```
 
-3. To clean the build files.
-```bash
-make clean
-```
-
+6. **Clean the Build Files**
+   Remove compiled binaries and other temporary files:
+    ```bash
+    make clean
+    ```
+## Features
+1. **Multi-Threaded File Transfer**: The server uses threads to transfer file segments concurrently.
+2. **Data Integrity Checks**: The application computes SHA256 checksums to ensure data integrity during the transfer.
+3. **Automated Testing**: Includes a script to test the application with various scenarios and file types.
+   
 ## Limitations
-Sometimes, while running the ``tests.sh`` file, the client and server get stuck and stop responding, especially, if you have been running for a while. In that case, killing both the programs and running again usually helps.
+- Occasionally, the client and server may hang during long or repeated runs. If this happens, restart both programs and try again.
+- Ensure that the OpenSSL library is correctly installed, as it's critical for checksum computation.
+
+## Resources Referenced
+- Socket programming tutorial: [GeeksforGeeks](https://www.geeksforgeeks.org/socket-programming-cc/)
+- Multi-threading concepts: [YouTube Video](https://www.youtube.com/watch?v=Pg_4Jz8ZIH4)
+- SHA256 computation using OpenSSL EVP API: [StackOverflow](https://stackoverflow.com/questions/34289094/alternative-for-calculating-sha256-to-using-deprecated-openssl-code) and [GitHub Issue](https://github.com/gluster/glusterfs/issues/2916)
+
+## Contributions
+Code written by [Samiya Ali Zaidi](https://github.com/samiyaalizaidi).
