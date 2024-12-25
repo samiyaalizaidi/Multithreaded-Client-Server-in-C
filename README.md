@@ -1,6 +1,6 @@
 # Concurrent File Transfer Application :bookmark_tabs:
 
-This project implements a multi-threaded client-server application for file transfer using socket programming in C. The server splits requested files into segments and sends them concurrently, while the client reassembles the file and verifies its integrity using SHA256 checksums.
+This project implements a multi-threaded client-server application for file transfer using socket programming in C. The server splits requested files into segments and sends them concurrently, while the client reassembles the file and verifies its integrity using SHA256 checksums. MUTEX locks are employed on both sides to avoid race conditions and ensure thread-safe operations.
 
 ## Dependencies
 Before you start, ensure the following dependencies are installed on your system:
