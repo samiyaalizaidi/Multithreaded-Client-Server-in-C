@@ -19,9 +19,9 @@ Before you start, ensure the following dependencies are installed on your system
 ## Repository Structure
 ```
 .
+├── LICENSE
 ├── Makefile
 ├── README.md
-├── LICENSE
 ├── client.c
 ├── server.c
 └── tests.sh
