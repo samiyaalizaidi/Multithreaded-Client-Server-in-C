@@ -39,19 +39,19 @@ Before you start, ensure the following dependencies are installed on your system
     cd Multithreaded-Client-Server-in-C
     ```
 
-3. **Build the Source Code**
+2. **Build the Source Code**
 
    Compile the source files using the ``Makefile``:
     ```bash
     make build
     ```
-4. **Run the Server**
+3. **Run the Server**
 
    Start the server to listen for incoming file transfer requests:
    ```bash
    ./server
    ```
-6. **Run the Client**
+4. **Run the Client**
 
    In a separate terminal, run the client to request a file from the server:
    ```bash
@@ -60,16 +60,16 @@ Before you start, ensure the following dependencies are installed on your system
    - ``<file-name>``: The name of the file you want to transfer.
    - ``<thread-count>``: The number of threads to use for concurrent file transfer.
      
-8. **Run Automated Tests**
+5. **Run Automated Tests**
 
    To execute all automated tests, use the following command:
    ```bash
    make run
    ```
 
-10. **Clean the Build Files**
+6. **Clean the Build Files**
 
-Remove compiled binaries and other temporary files:
+    Remove compiled binaries and other temporary files:
     ```bash
     make clean
     ```
